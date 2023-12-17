@@ -17,10 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        
     ];
 
     /**
@@ -29,7 +27,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'login_code',
         'remember_token',
     ];
 
@@ -38,7 +36,29 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'password' => 'hashed',
-    ];
+    // protected $casts = [
+    //     'password' => 'hashed',
+    // ];
+
+    public function routeNotificationForTwilio()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Get the driver record associated with the user.
+     */
+    public function driver()
+    {
+        return $this->hasOne(Driver::class);
+    }
+
+    /**
+     * Get the trips for the user.
+     */
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }
