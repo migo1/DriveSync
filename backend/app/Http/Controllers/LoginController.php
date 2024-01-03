@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Notifications\LoginNeedsVerification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
     public function submit(Request $request)
     {
+
+        
         // validate the phone number
         $request->validate([
            //  'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
@@ -21,6 +24,7 @@ class LoginController extends Controller
         $user = User::firstOrCreate(
             ['phone' => $request->phone]
         );
+// dd($user);
 
         if(!$user) {
             return response()->json([

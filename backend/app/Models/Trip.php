@@ -11,6 +11,14 @@ class Trip extends Model
 
     protected $guarded = [];
 
+    // protected $casts = [
+    //     'origin' => 'array',
+    //     'destination' => 'array',
+    //     'driver_location' => 'array',
+    //     'is_started' => 'boolean',
+    //     'is_complete' => 'boolean',
+    // ];
+
     /**
      * Get the user that owns the trip.
      */
